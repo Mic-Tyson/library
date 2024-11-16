@@ -18,6 +18,8 @@ function generateDeleteBookButton(index) {
     if (bookDiv) { 
       library.removeBook(index);
       bookDiv.remove() };
+      booksContainer.innerHTML = ""; // less efficient but easier to maintain
+      library.display(fragment, booksContainer);
   });
 
   return deleteButton;
@@ -128,7 +130,7 @@ form.addEventListener("submit", (e) => {
   library.addBook(book);
   dialog.close();
 
-  booksContainer.innerHTML = "";
+  booksContainer.innerHTML = ""; // less efficient but easier to maintain for a test project
 
   library.display(fragment, booksContainer);
 });
