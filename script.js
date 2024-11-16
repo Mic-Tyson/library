@@ -128,11 +128,9 @@ form.addEventListener("submit", (e) => {
   library.addBook(book);
   dialog.close();
 
-  const div = book.display();
-  div.prepend(generateHeaderDiv(library.books.length - 1));  
-  div.appendChild(generateDeleteBookButton(library.books.length - 1));
-  div.appendChild(generateReadCheck(library.books.length -1));
-  booksContainer.appendChild(div);
+  booksContainer.innerHTML = "";
+
+  library.display(fragment, booksContainer);
 });
 
 
