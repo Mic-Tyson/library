@@ -37,13 +37,9 @@ function generateReadCheck(index) {
   wrapper.appendChild(label);
   wrapper.appendChild(checkbox);
 
-  checkbox.addEventListener("click", (e) => {
-    const bookDiv = document.getElementById(`book-${index}`);
-    if (bookDiv) { 
-      const book = library.books[index];
-      book.read = checkbox.checked;
-      console.log(book.read);
-    }
+  checkbox.addEventListener("change", (e) => {
+    const book = library.books[index];
+    book.setRead(checkbox.checked);
   });
 
   return wrapper;
@@ -55,6 +51,14 @@ function Book(title, author, read = false) {
   this.author = author;
   this.read = read;
 }
+
+Book.prototype.setRead = function(bool) {
+  this.read = bool;
+};
+
+Book.prototype.getRead = function() {
+  return this.read;
+};
 
 Book.prototype.display = function() {
   const div = document.createElement("div");
